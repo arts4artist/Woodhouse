@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/api/interactions", "dest": "/api/interactions.js" }
+  ]
+}

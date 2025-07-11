@@ -1,0 +1,14 @@
+{
+  "name": "vercel-discord-bot",
+  "type": "module",
+  "dependencies": {
+    "discord-interactions": "^1.5.1",
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
+  },
+  "scripts": {
+    "register": "node commands/register.js",
+    "dev": "node index.js"
+  }
+}
