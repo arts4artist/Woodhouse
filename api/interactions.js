@@ -9,11 +9,14 @@ export const config = {
 
 export default async function handler(req, res) {
   const rawBody = await getRawBody(req);
-  const signature = req.headers['x-signature-ed25519'];
-  const timestamp = req.headers['x-signature-timestamp'];
+  const signature = req.headers['x-signature-ed25519'] || '';
+  const timestamp = req.headers['x-signature-timestamp'] || '';
+
+  if (!rawBody || !signature || !timestamp || !process.env.DISCORD_PUBLIC_KEY) {
+    return res.status(400).send('Missing headers or body');
+  }
 
   const isValid = verifySignature(signature, timestamp, rawBody.toString(), process.env.DISCORD_PUBLIC_KEY);
-
   if (!isValid) return res.status(401).send('Bad request signature');
 
   const json = JSON.parse(rawBody);
