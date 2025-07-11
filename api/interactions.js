@@ -1,6 +1,9 @@
 import { verifySignature } from '../utils/verify.js';
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
 
+console.log('Incoming interaction:', req.method, req.headers);
+console.log('Parsed interaction:', json);
+
 export const config = {
   api: {
     bodyParser: false
@@ -42,8 +45,8 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: { content }
+      type: 4, // InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE
+      data: { content: 'your message' }
     });
   }
 
